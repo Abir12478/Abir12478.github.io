@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>মোঃ মাহমুদ হাসান আবির | হাটহাজারী মাদ্রাসা</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0d6b4c;
+      --primary-dark: #084d37;
+      --accent: #c9a227;
+      --bg: #f7f9f8;
+      --card: #ffffff;
+      --text: #1a2e28;
+      --text-light: #5a6f68;
+      --shadow: 0 10px 40px rgba(13, 107, 76, 0.08);
+      --radius: 16px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    .bg-shapes {
+      position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+    }
+    .bg-shapes span {
+      position: absolute; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(13,107,76,0.06), rgba(201,162,39,0.05));
+      animation: float 18s infinite ease-in-out;
+    }
+    .bg-shapes span:nth-child(1) { width: 400px; height: 400px; top: -100px; left: -100px; }
+    .bg-shapes span:nth-child(2) { width: 300px; height: 300px; bottom: 10%; right: -80px; animation-delay: -5s; }
+    .bg-shapes span:nth-child(3) { width: 200px; height: 200px; top: 40%; left: 60%; animation-delay: -10s; }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(247, 249, 248, 0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(13, 107, 76, 0.08); transition: all 0.3s ease;
+    }
+    nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .logo { font-weight: 700; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.95rem;
+      transition: color 0.25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+      background: var(--primary); transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-links a:hover::after { width: 100%; }
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 6rem 5% 4rem; gap: 4rem; max-width: 1200px; margin: 0 auto;
+    }
+    .hero-content { flex: 1; animation: fadeUp 0.9s ease both; }
+    .hero-badge {
+      display: inline-block; background: rgba(13, 107, 76, 0.1); color: var(--primary);
+      padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.9rem; font-weight: 500; margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; line-height: 1.25;
+      margin-bottom: 0.6rem; color: var(--text);
+    }
+    .hero h1 span { color: var(--primary); }
+    .hero .subtitle { font-size: 1.25rem; color: var(--text-light); margin-bottom: 1.5rem; font-weight: 500; }
+    .hero p { color: var(--text-light); max-width: 480px; margin-bottom: 2rem; font-size: 1.05rem; }
+    .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.6rem;
+      border-radius: 12px; font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: all 0.3s ease; border: none; cursor: pointer; font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--primary); color: white;
+      box-shadow: 0 8px 24px rgba(13, 107, 76, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark); transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(13, 107, 76, 0.3);
+    }
+    .btn-outline {
+      background: transparent; color: var(--primary); border: 2px solid var(--primary);
+    }
+    .btn-outline:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+    .hero-image { flex: 0 0 340px; animation: fadeUp 0.9s ease 0.2s both; }
+    .image-wrapper {
+      position: relative; width: 320px; height: 380px; margin: 0 auto;
+    }
+    .image-wrapper::before {
+      content: ''; position: absolute; inset: -12px; border-radius: 24px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      opacity: 0.15; z-index: -1; animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.15; }
+      50% { transform: scale(1.03); opacity: 0.22; }
+    }
+    .image-wrapper img {
+      width: 100%; height: 100%; object-fit: cover; border-radius: 20px;
+      box-shadow: var(--shadow); border: 4px solid white;
+    }
+    section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title h2 { font-size: 2rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .section-title .line {
+      width: 60px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent));
+      margin: 0 auto; border-radius: 2px;
+    }
+    .about-card {
+      background: var(--card); border-radius: var(--radius); padding: 2.5rem;
+      box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr 1.4fr;
+      gap: 2.5rem; align-items: center;
+    }
+    .about-info h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--primary); }
+    .about-info p { color: var(--text-light); margin-bottom: 1rem; }
+    .info-list { list-style: none; margin-top: 1.5rem; }
+    .info-list li { display: flex; gap: 0.8rem; margin-bottom: 0.8rem; color: var(--text); }
+    .info-list strong { color: var(--primary-dark); min-width: 90px; }
+    .edu-card {
+      background: var(--card); border-radius: var(--radius); padding: 2rem 2.5rem;
+      box-shadow: var(--shadow); border-left: 5px solid var(--primary);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .edu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(13, 107, 76, 0.12); }
+    .edu-card h3 { font-size: 1.3rem; color: var(--primary-dark); margin-bottom: 0.4rem; }
+    .edu-card .jamaat {
+      display: inline-block; background: rgba(13, 107, 76, 0.1); color: var(--primary);
+      padding: 0.3rem 0.9rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem;
+    }
+    .edu-card p { color: var(--text-light); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--card); border-radius: var(--radius); padding: 1.8rem 1.5rem;
+      text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease;
+    }
+    .skill-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(13, 107, 76, 0.12); }
+    .skill-icon {
+      width: 56px; height: 56px; margin: 0 auto 1rem;
+      background: linear-gradient(135deg, rgba(13,107,76,0.12), rgba(201,162,39,0.12));
+      border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+    }
+    .skill-card h4 { font-size: 1.1rem; margin-bottom: 0.4rem; color: var(--text); }
+    .skill-card p { font-size: 0.9rem; color: var(--text-light); }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+    }
+    .contact-card {
+      background: var(--card); border-radius: var(--radius); padding: 1.8rem;
+      text-align: center; box-shadow: var(--shadow); transition: all 0.3s ease;
+      text-decoration: none; color: inherit;
+    }
+    .contact-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(13, 107, 76, 0.12); }
+    .contact-icon {
+      width: 52px; height: 52px; margin: 0 auto 1rem; background: var(--primary);
+      color: white; border-radius: 14px; display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem;
+    }
+    .contact-card h4 { margin-bottom: 0.3rem; color: var(--text); }
+    .contact-card p { font-size: 0.95rem; color: var(--text-light); word-break: break-all; }
+    footer {
+      text-align: center; padding: 2.5rem 5%; background: var(--primary-dark);
+      color: rgba(255,255,255,0.85); margin-top: 3rem;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .hero { flex-direction: column-reverse; text-align: center; padding-top: 5rem; gap: 2.5rem; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-buttons { justify-content: center; }
+      .hero-image { flex: none; }
+      .image-wrapper { width: 260px; height: 310px; }
+      .about-card { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 500px) {
+      .hero h1 { font-size: 1.9rem; }
+      section { padding: 3.5rem 4%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-shapes"><span></span><span></span><span></span></div>
+
+  <nav id="navbar">
+    <a href="#" class="logo">আবির</a>
+    <ul class="nav-links">
+      <li><a href="#about">পরিচিতি</a></li>
+      <li><a href="#education">শিক্ষা</a></li>
+      <li><a href="#skills">আগ্রহ</a></li>
+      <li><a href="#contact">যোগাযোগ</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">হাটহাজারী কওমি মাদ্রাসার ছাত্র</div>
+      <h1>মোঃ মাহমুদ হাসান <span>আবির</span></h1>
+      <p class="subtitle">মেশকাত জামাত · ইলমুল হাদিস</p>
+      <p>আল-জামিয়াতুল আহলিয়া দারুল উলূম মঈনুল ইসলাম (হাটহাজারী) মাদ্রাসার ছাত্র। দ্বীনি জ্ঞান অর্জন ও আত্মউন্নয়নে নিবেদিত।</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">যোগাযোগ করুন</a>
+        <a href="#about" class="btn btn-outline">আরও জানুন</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <div class="image-wrapper">
+        <img src="profile.jpg" alt="মোঃ মাহমুদ হাসান আবির">
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title">
+      <h2>আমার সম্পর্কে</h2>
+      <div class="line"></div>
+    </div>
+    <div class="about-card reveal">
+      <div class="about-info">
+        <h3>সংক্ষিপ্ত পরিচিতি</h3>
+        <p>আমি মোঃ মাহমুদ হাসান আবির। হাটহাজারীর আল-জামিয়াতুল আহলিয়া দারুল উলূম মঈনুল ইসলাম মাদ্রাসার মেশকাত জামাতের ছাত্র। ইলমুল হাদিস অর্জনের পাশাপাশি দ্বীনি জ্ঞান চর্চা ও আত্মউন্নয়নে সচেষ্ট। সরল জীবনযাপন ও ইসলামের সঠিক বার্তা ছড়িয়ে দেওয়ার চেষ্টায় আছি।</p>
+      </div>
+      <div>
+        <ul class="info-list">
+          <li><strong>নাম</strong> মোঃ মাহমুদ হাসান আবির</li>
+          <li><strong>জামাত</strong> মেশকাত জামাত</li>
+          <li><strong>মাদ্রাসা</strong> হাটহাজারী মাদ্রাসা</li>
+          <li><strong>জন্ম</strong> ৬ ডিসেম্বর ২০০৫</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-title">
+      <h2>শিক্ষা</h2>
+      <div class="line"></div>
+    </div>
+    <div class="edu-card reveal">
+      <h3>আল-জামিয়াতুল আহলিয়া দারুল উলূম মঈনুল ইসলাম</h3>
+      <div class="jamaat">মেশকাত জামাত</div>
+      <p>হাটহাজারী, চট্টগ্রাম — বাংলাদেশের অন্যতম প্রাচীন ও বিখ্যাত কওমি মাদ্রাসা। এখানে ইলমুল হাদিসসহ দ্বীনি শিক্ষার পরিপূর্ণ পাঠদান করা হয়।</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title">
+      <h2>আগ্রহ ও দক্ষতা</h2>
+      <div class="line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">📖</div>
+        <h4>হাদিস শরীফ</h4>
+        <p>ইলমুল হাদিস চর্চা</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🕌</div>
+        <h4>দ্বীনি জ্ঞান</h4>
+        <p>ফিকহ ও আকিদা</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">✍️</div>
+        <h4>আরবি ভাষা</h4>
+        <p>পাঠ ও বোঝাপড়া</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🌱</div>
+        <h4>আত্মউন্নয়ন</h4>
+        <p>চরিত্র গঠন ও খেদমত</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-title">
+      <h2>যোগাযোগ</h2>
+      <div class="line"></div>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:otpabirbd@gmail.com" class="contact-card reveal">
+        <div class="contact-icon">✉️</div>
+        <h4>ইমেইল</h4>
+        <p>otpabirbd@gmail.com</p>
+      </a>
+      <a href="https://www.facebook.com/md.abir.hasan.584902" target="_blank" class="contact-card reveal">
+        <div class="contact-icon">📘</div>
+        <h4>ফেসবুক</h4>
+        <p>md.abir.hasan</p>
+      </a>
+      <a href="https://wa.me/8801834024331" target="_blank" class="contact-card reveal">
+        <div class="contact-icon">💬</div>
+        <h4>হোয়াটসঅ্যাপ</h4>
+        <p>01834024331</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© ২০২৬ মোঃ মাহমুদ হাসান আবির · হাটহাজারী মাদ্রাসা</p>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>
